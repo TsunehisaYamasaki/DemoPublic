@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AISearchEvaluationAgent", "AISearchEvaluationAgent", "{96A5F694-2DFD-DB4F-0D0A-199918127881}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EvaluationAIAgent", "AISearchEvaluationAgent\EvaluationAIAgent.csproj", "{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLoader", "src\DataLoader.csproj", "{79626D1E-8105-2B7D-43B5-F762D7091E91}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ai-agent-sql", "ai-agent-sql", "{71113491-8064-5467-BB4B-564C2F7AD084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemiconductorAIAgent", "src\ai-agent-sql\SemiconductorAIAgent.csproj", "{2C2D45AA-20F2-3CCC-174A-C857F0C7F883}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79626D1E-8105-2B7D-43B5-F762D7091E91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79626D1E-8105-2B7D-43B5-F762D7091E91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79626D1E-8105-2B7D-43B5-F762D7091E91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79626D1E-8105-2B7D-43B5-F762D7091E91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C2D45AA-20F2-3CCC-174A-C857F0C7F883}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C2D45AA-20F2-3CCC-174A-C857F0C7F883}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C2D45AA-20F2-3CCC-174A-C857F0C7F883}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C2D45AA-20F2-3CCC-174A-C857F0C7F883}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2D0D5924-D3A3-FAD2-FB6A-355999AB8E3B} = {96A5F694-2DFD-DB4F-0D0A-199918127881}
+		{79626D1E-8105-2B7D-43B5-F762D7091E91} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{71113491-8064-5467-BB4B-564C2F7AD084} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{2C2D45AA-20F2-3CCC-174A-C857F0C7F883} = {71113491-8064-5467-BB4B-564C2F7AD084}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F0753460-41B7-42E6-BDB9-114C18A074AF}
+	EndGlobalSection
+EndGlobal
