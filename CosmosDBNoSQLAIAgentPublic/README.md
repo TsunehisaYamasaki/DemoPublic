@@ -1,5 +1,6 @@
 # Azure Cosmos DB + AI Search Evaluation Agent
 
+私が手元で検証した内容を紹介いたします。
 Azure Cosmos DB、Azure AI Search、Azure OpenAIを統合した、半導体設計・製造データの分析システムです。
 
 ## 🎯 プロジェクト概要
