@@ -1,0 +1,14 @@
+.git*
+.vscode
+__azurite_db*__.json
+.python_packages
+local.settings.json
+test
+.venv
+tools
+deploy
+sample_inputs
+*.pyc
+__pycache__
+requirements-dev.txt
+README.md

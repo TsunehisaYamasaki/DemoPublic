@@ -1,0 +1,10 @@
+python-docx
+openpyxl
+python-pptx
+Pillow
+reportlab
+msal
+requests
+azure-search-documents
+openai
+azure-identity
