@@ -6,7 +6,7 @@
 <img width="1565" height="270" alt="image" src="https://github.com/user-attachments/assets/3e778246-aa48-4e76-a508-8b1a7b935a21" />
 
 ```
-[ユーザー]
+[Users]
    │ ファイルアップロード (SharePoint Online)
    ▼
 [SharePoint Online]           ← folder1 (Shared Documents)
