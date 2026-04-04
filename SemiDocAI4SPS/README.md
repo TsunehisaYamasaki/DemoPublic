@@ -3,6 +3,7 @@
 私が手元で検証した内容を紹介いたします。SharePoint Online の **folder1** にアップロードされた半導体関連ドキュメントを **Azure AI Document Intelligence** で自動テキスト化し、**Cosmos DB** に保存。さらに **Azure AI Search** でインデックス化し、**Azure OpenAI GPT-4o** を使った RAG (Retrieval-Augmented Generation) パターンで自然言語による質問応答を実現するサーバーレスシステムです。
 
 ## システム構成
+<img width="1565" height="270" alt="image" src="https://github.com/user-attachments/assets/3e778246-aa48-4e76-a508-8b1a7b935a21" />
 
 ```
 [ユーザー]
