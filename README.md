@@ -17,6 +17,7 @@ Azure と AI を活用した半導体製造データ分析のデモプロジェ�
 Azure Cosmos DB for NoSQL と Azure OpenAI を統合した **半導体設計・製造データ分析システム** です。RAG (Retrieval-Augmented Generation) パターンを 2 つのアプローチで実装しています。
 
 ### アーキテクチャ
+<img width="489" height="132" alt="image" src="https://github.com/user-attachments/assets/cd8ccf7e-3c25-4692-8cf9-e6eea9c7b83a" />
 
 ```mermaid
 flowchart TD
@@ -50,6 +51,8 @@ flowchart TD
 SharePoint Online にアップロードされた半導体関連ドキュメントを **Azure AI Document Intelligence** で自動テキスト化し、**Azure AI Search + Azure OpenAI GPT-4o** による RAG パターンで自然言語の質問応答を実現するサーバーレスシステムです。
 
 ### アーキテクチャ
+<img width="1169" height="194" alt="image" src="https://github.com/user-attachments/assets/0f99ef4c-49b7-4408-8652-ee46881b59da" />
+
 
 ```mermaid
 flowchart TD
