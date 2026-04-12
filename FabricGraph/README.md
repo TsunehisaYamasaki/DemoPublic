@@ -1,4 +1,4 @@
-# Fabric Graph Quickstart
+# Fabric Graph Quickstart　<img width="37" height="40" alt="image" src="https://github.com/user-attachments/assets/892e2464-8fa1-4bd5-a8a8-172c9ef3540e" />
 
 Microsoft Fabric の Graph model (preview) を使用して、AdventureWorks サンプルデータからグラフを作成し、GQL クエリを実行するプロジェクトです。 UI を使わずプロジェクトをデプロイしています。
 
