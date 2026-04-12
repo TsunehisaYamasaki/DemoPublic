@@ -1,6 +1,6 @@
 # Fabric Graph Quickstart
 
-Microsoft Fabric の Graph model (preview) を使用して、AdventureWorks サンプルデータからグラフを作成し、GQL クエリを実行するプロジェクトです。 UI を使わずすべてコードでプロジェクトをデプロイしています。
+Microsoft Fabric の Graph model (preview) を使用して、AdventureWorks サンプルデータからグラフを作成し、GQL クエリを実行するプロジェクトです。 UI を使わずプロジェクトをデプロイしています。
 
 > 参考: [Quickstart: Create your first graph in Microsoft Fabric](https://learn.microsoft.com/en-us/fabric/graph/quickstart)
 
