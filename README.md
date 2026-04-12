@@ -17,18 +17,13 @@ Azure と AI を活用した半導体製造データ分析のデモプロジェ�
 Azure Cosmos DB for NoSQL と Azure OpenAI を統合した **半導体設計・製造データ分析システム** です。RAG (Retrieval-Augmented Generation) パターンを 2 つのアプローチで実装しています。
 
 ### アーキテクチャ
-<img width="624" height="164" alt="image" src="https://github.com/user-attachments/assets/b3f16ef4-7b50-4539-9545-057c479548ad" />
 
-```
-Cosmos DB for NoSQL (設計 1,000 件 + 製造 1,000 件)
-    ↓
-Azure AI Search Indexers (自動インデックス化)
-    ↓
-Azure AI Search Indexes (designs / manufacturing)
-    ↓
-RAG Agent (検索 + コンテキスト構築)
-    ↓
-Azure OpenAI GPT-4o (回答生成)
+```mermaid
+flowchart TD
+    A["Cosmos DB for NoSQL<br/>(設計 1,000 件 + 製造 1,000 件)"] --> B["Azure AI Search Indexers<br/>(自動インデックス化)"]
+    B --> C["Azure AI Search Indexes<br/>(designs / manufacturing)"]
+    C --> D["RAG Agent<br/>(検索 + コンテキスト構築)"]
+    D --> E["Azure OpenAI GPT-4o<br/>(回答生成)"]
 ```
 
 ### 2 つの AI エージェントパターン
@@ -55,20 +50,15 @@ Azure OpenAI GPT-4o (回答生成)
 SharePoint Online にアップロードされた半導体関連ドキュメントを **Azure AI Document Intelligence** で自動テキスト化し、**Azure AI Search + Azure OpenAI GPT-4o** による RAG パターンで自然言語の質問応答を実現するサーバーレスシステムです。
 
 ### アーキテクチャ
-<img width="1550" height="253" alt="image" src="https://github.com/user-attachments/assets/ef5abcbe-a0be-46c4-a99c-1ee44956e682" />
 
-```
-SharePoint Online (folder1)
-    ↓ Microsoft Graph API (5 分間隔ポーリング)
-Azure Functions (Python, Timer Trigger)
-    ↓ Document Intelligence API
-Azure AI Document Intelligence (prebuilt-layout)
-    ↓ テキスト・テーブル・キーバリュー抽出
-Azure Cosmos DB (JSON 保存)
-    ↓ 自動インデックス化
-Azure AI Search (全文検索 + ベクトル検索)
-    ↓ 検索 + コンテキスト構築
-RAG Agent → Azure OpenAI GPT-4o (回答生成)
+```mermaid
+flowchart TD
+    A["SharePoint Online<br/>(folder1)"] -->|"Microsoft Graph API<br/>(5 分間隔ポーリング)"| B["Azure Functions<br/>(Python, Timer Trigger)"]
+    B -->|"Document Intelligence API"| C["Azure AI Document Intelligence<br/>(prebuilt-layout)"]
+    C -->|"テキスト・テーブル・<br/>キーバリュー抽出"| D["Azure Cosmos DB<br/>(JSON 保存)"]
+    D -->|"自動インデックス化"| E["Azure AI Search<br/>(全文検索 + ベクトル検索)"]
+    E -->|"検索 + コンテキスト構築"| F["RAG Agent"]
+    F --> G["Azure OpenAI GPT-4o<br/>(回答生成)"]
 ```
 
 ### 対応ファイル形式
@@ -102,14 +92,11 @@ Microsoft Fabric の **Graph model (preview)** を使用して、AdventureWorks 
 
 ### アーキテクチャ
 
-```
-AdventureWorks Parquet データ
-    ↓ OneLake ADLS Gen2 API (アップロード)
-Fabric Lakehouse (Delta テーブル)
-    ↓ Load Table API
-Graph Model (Customer / Order ノード + purchases エッジ)
-    ↓ Execute Query API (GQL)
-クエリ結果 (注文数上位顧客)
+```mermaid
+flowchart TD
+    A["AdventureWorks<br/>Parquet データ"] -->|"OneLake ADLS Gen2 API<br/>(アップロード)"| B["Fabric Lakehouse<br/>(Delta テーブル)"]
+    B -->|"Load Table API"| C["Graph Model<br/>(Customer / Order ノード<br/>+ purchases エッジ)"]
+    C -->|"Execute Query API (GQL)"| D["クエリ結果<br/>(注文数上位顧客)"]
 ```
 
 ### 主要コンポーネント
