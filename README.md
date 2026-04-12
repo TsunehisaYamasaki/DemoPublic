@@ -89,7 +89,7 @@ PDF / Word (.docx) / Excel (.xlsx) / PowerPoint (.pptx) / 画像 (PNG, JPG, BMP,
 
 ---
 
-## FabricGraph
+## Fabric Graph　<img width="37" height="40" alt="image" src="https://github.com/user-attachments/assets/892e2464-8fa1-4bd5-a8a8-172c9ef3540e" />
 
 Microsoft Fabric の **Graph model (preview)** を使用して、AdventureWorks サンプルデータからグラフを作成し、**GQL (Graph Query Language)** クエリを REST API 経由で実行するプロジェクトです。UI を使わずプロジェクトをデプロイしています。
 
