@@ -8,6 +8,7 @@ Azure と AI を活用した半導体製造データ分析のデモプロジェ�
 |-------------|------|---------|
 | [CosmosDBNoSQLAIAgentPublic](./CosmosDBNoSQLAIAgentPublic/) | Cosmos DB + AI Search による半導体 KPI データ分析 AI エージェント | .NET 8.0, Bicep, C# |
 | [SemiDocAI4SPS](./SemiDocAI4SPS/) | SharePoint Online ドキュメントの自動テキスト化 + RAG 質問応答システム | Python, Azure Functions |
+| [FabricGraph](./FabricGraph/) | Microsoft Fabric Graph model で AdventureWorks データのグラフ分析 | Python, PowerShell, GQL |
 
 ---
 
@@ -95,10 +96,38 @@ PDF / Word (.docx) / Excel (.xlsx) / PowerPoint (.pptx) / 画像 (PNG, JPG, BMP,
 
 ---
 
+## FabricGraph
+
+Microsoft Fabric の **Graph model (preview)** を使用して、AdventureWorks サンプルデータからグラフを作成し、**GQL (Graph Query Language)** クエリを REST API 経由で実行するプロジェクトです。
+
+### アーキテクチャ
+
+```
+AdventureWorks Parquet データ
+    ↓ OneLake ADLS Gen2 API (アップロード)
+Fabric Lakehouse (Delta テーブル)
+    ↓ Load Table API
+Graph Model (Customer / Order ノード + purchases エッジ)
+    ↓ Execute Query API (GQL)
+クエリ結果 (注文数上位顧客)
+```
+
+### 主要コンポーネント
+
+- **Microsoft Fabric Graph model** — Lakehouse テーブルからグラフ構造を定義
+- **OneLake** — ADLS Gen2 互換のデータレイク
+- **Fabric REST API** — ワークスペース・Lakehouse・Graph Model のプログラマティック操作
+- **GQL** — ISO 標準ベースの Graph Query Language
+
+👉 詳細は [FabricGraph/README.md](./FabricGraph/README.md) を参照
+
+---
+
 ## 共通の技術スタック
 
 - **Azure Cosmos DB for NoSQL** — データストア
 - **Azure AI Search** — セマンティック検索 + ベクトル検索
 - **Azure OpenAI (GPT-4o)** — 自然言語分析・回答生成
+- **Microsoft Fabric** — データレイク + Graph model
 - **Managed Identity** — サービス間のキーレス認証
 - **RBAC** — ロールベースアクセス制御
