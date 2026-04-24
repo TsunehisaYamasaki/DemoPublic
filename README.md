@@ -9,6 +9,7 @@
 | [CosmosDBNoSQLAIAgentPublic](./CosmosDBNoSQLAIAgentPublic/) | Cosmos DB + AI Search による半導体 KPI データ分析 AI エージェント | .NET 8.0, Bicep, C# |
 | [SemiDocAI4SPS](./SemiDocAI4SPS/) | SharePoint Online ドキュメントの自動テキスト化 + RAG 質問応答システム | Python, Azure Functions |
 | [FabricGraph](./FabricGraph/) | Microsoft Fabric Graph model で AdventureWorks データのグラフ分析 | Python, PowerShell, GQL |
+| [Private ConToFabricWorkspace](./Private%20ConToFabricWorkspace/) | Fabric 閉域ネットワーク環境で OPDG 経由の SQL → Lakehouse パイプライン構築 | PowerShell, ARM, Fabric REST API |
 
 ---
 
@@ -113,11 +114,61 @@ flowchart TD
 
 ---
 
+## Private ConToFabricWorkspace
+
+Microsoft Fabric の **Workspace-level Private Link** と **Communication Policy (Inbound/Outbound = Deny)** を使用して完全閉域化されたワークスペースで、**On-premises Data Gateway (OPDG)** 経由で Azure SQL Database → Lakehouse へデータをコピーするパイプラインを構築するデモです。
+
+### アーキテクチャ
+
+```mermaid
+flowchart TD
+    subgraph Fabric[Fabric Service]
+        WS["Workspace\n🔒 Communication Policy\nInbound: Deny / Outbound: Deny"]
+        P[Data Pipeline]
+        L[Lakehouse]
+    end
+    subgraph Azure[Azure Subscription]
+        subgraph VNet[VNet]
+            VM["VM + OPDG"]
+            PE_WS[Workspace PE]
+            PE_KV[Key Vault PE]
+            PE_SQL[SQL PE]
+        end
+        KV["Key Vault\n(PNA=Disabled)"]
+        SQL[Azure SQL Server]
+    end
+    VM -->|Private Link| PE_WS --> WS
+    P -->|OPDG 経由| VM
+    VM --> PE_KV -->|Private Link| KV
+    VM --> PE_SQL -->|Private Link| SQL
+    P -->|write| L
+```
+
+### 構成のポイント
+
+- **完全閉域化** — Workspace Communication Policy で Public Internet アクセスを完全遮断
+- **AKV Reference** — SQL パスワードを Key Vault から動的解決 (OPDG 経由で PE アクセス)
+- **Private Endpoint** — SQL / Key Vault / Workspace すべて PE 経由の通信
+- **自動構築スクリプト** — VNet / PE / DNS / VM / Bastion / SQL / Key Vault を PowerShell で冪等に自動構築
+
+### 主要コンポーネント
+
+- **Fabric Workspace-level Private Link** — ワークスペース単位の閉域接続
+- **On-premises Data Gateway (OPDG)** — VNet 内 VM 上で Private Endpoint 経由アクセスを仲介
+- **Azure Key Vault** — SQL 認証情報の安全な格納 (完全閉域設定で運用)
+- **Azure SQL Database** — データソース (Private Endpoint 経由のみアクセス可)
+- **Azure Bastion** — VM への安全なリモート接続
+
+👉 詳細は [Private ConToFabricWorkspace/README.md](./Private%20ConToFabricWorkspace/README.md) を参照
+
+---
+
 ## 共通の技術スタック
 
 - **Azure Cosmos DB for NoSQL** — データストア
 - **Azure AI Search** — セマンティック検索 + ベクトル検索
 - **Azure OpenAI (GPT-4o)** — 自然言語分析・回答生成
-- **Microsoft Fabric** — データレイク + Graph model
+- **Microsoft Fabric** — データレイク + Graph model + 閉域パイプライン
 - **Managed Identity** — サービス間のキーレス認証
 - **RBAC** — ロールベースアクセス制御
+- **Private Endpoint / Private Link** — 閉域ネットワーク接続
