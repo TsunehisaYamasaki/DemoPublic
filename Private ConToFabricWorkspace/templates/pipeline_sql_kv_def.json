@@ -1,0 +1,72 @@
+{
+  "properties": {
+    "activities": [
+      {
+        "name": "CopySqlToLakehouse",
+        "description": "OPDG 経由で SQL Private Endpoint から dbo.SalesData を Lakehouse Table へコピー。conn-sql-opdg のパスワードは AKV Reference (kv-fabric-demo / sql-admin-password) で KV から動的解決される。",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.12:00:00",
+          "retry": 0,
+          "retryIntervalInSeconds": 30,
+          "secureOutput": false,
+          "secureInput": false
+        },
+        "typeProperties": {
+          "source": {
+            "type": "AzureSqlSource",
+            "sqlReaderQuery": "SELECT SaleId, ProductName, Quantity, UnitPrice, CONVERT(VARCHAR(10), SaleDate, 23) AS SaleDate, Region FROM dbo.SalesData",
+            "queryTimeout": "02:00:00",
+            "partitionOption": "None",
+            "datasetSettings": {
+              "annotations": [],
+              "type": "AzureSqlTable",
+              "schema": [],
+              "typeProperties": {
+                "schema": "dbo",
+                "table": "SalesData"
+              },
+              "externalReferences": {
+                "connection": "__CONN_ID_SQL_OPDG__"
+              }
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "OverwriteSchema",
+            "datasetSettings": {
+              "annotations": [],
+              "type": "LakehouseTable",
+              "schema": [],
+              "typeProperties": {
+                "table": "SalesData"
+              },
+              "linkedService": {
+                "name": "lh_pipeline",
+                "properties": {
+                  "type": "Lakehouse",
+                  "typeProperties": {
+                    "workspaceId": "__WORKSPACE_ID__",
+                    "artifactId": "__LAKEHOUSE_ARTIFACT_ID__",
+                    "rootFolder": "Tables"
+                  },
+                  "annotations": []
+                }
+              }
+            }
+          },
+          "enableStaging": false,
+          "translator": {
+            "type": "TabularTranslator",
+            "typeConversion": true,
+            "typeConversionSettings": {
+              "allowDataTruncation": true,
+              "treatBooleanAsNumber": false
+            }
+          }
+        }
+      }
+    ]
+  }
+}

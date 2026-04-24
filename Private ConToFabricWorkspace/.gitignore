@@ -1,0 +1,23 @@
+# OS / Editor
+~$*
+*.tmp
+*.bak
+Thumbs.db
+.DS_Store
+
+# PowerPoint (locked files)
+*.pptx
+
+# Logs
+*.log
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Deployment state
+deployment_state.json
+
+# Node
+node_modules/
